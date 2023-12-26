@@ -1,17 +1,16 @@
-const heading = React.createElement("h1",{id:"heading"},"Hello World From React");
-const div = React.createElement("div",{id:"parent"},
-[React.createElement("div",{id:"child"},
-[
-    React.createElement("h2",{id:"heading2"}, "I am h2 tag!"),
-    React.createElement("h3",{id:"heading3"}, "I am h3 tag!")
-]),
-React.createElement("div",{id:"child"},
-[
-    React.createElement("h4",{id:"heading4"}, "I am h4 tag!"),
-    React.createElement("h5",{id:"heading5"}, "I am h5 tag!")
-])
-]);
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(heading);
-root.render(div);
-      
+import React from 'react';
+import ReactDOM  from 'react-dom/client';
+
+const TitleComponent = () => (<h1 className='components'>Components</h1>)
+const HeadingComponent = () => (
+    <div id = 'container'>
+        {/* Babel Understands and Transpiles the code */}
+        <TitleComponent/> 
+        {"Hello"}
+        {100 + 100}
+        <h2 id = 'heading' className = 'heading'>Rendering Heading Component </h2>
+    </div> 
+)
+const root =  ReactDOM.createRoot(document.getElementById("root"));
+// When it is component render inside TimeRanges, babel will transpile. If it is an react element then keep it like that
+root.render(<HeadingComponent/>);
