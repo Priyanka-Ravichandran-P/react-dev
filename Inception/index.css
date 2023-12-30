@@ -1,3 +1,133 @@
-#heading {
-    color: blueviolet;
+.header {
+   display: flex;
+   justify-content: space-between;
+   border: solid black;
 }
+.header > div > img {
+    height: 100%;
+    width: 100px;
+}
+.nav-bar > ul {
+    display: flex;
+}
+
+.nav-bar > ul > li {
+    padding: 5px;
+    list-style-type: none;
+    font-size: 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+.nav-bar > ul > li:hover{
+    background-color: lightgray;
+}
+
+.nav-bar > ul > li > img {
+    height: 25px;
+    width: 30px;
+}
+.restaurant-card-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+    margin: 5px 5px;
+}
+.restro-card{
+    width: 15%;
+    padding: 5px;
+    margin: 5px;
+    background-color: coral;
+    height: 370px;
+}
+.restro-card:hover{
+    cursor: pointer;
+    border: 5px solid turquoise;
+}
+.restro-logo{
+    width: 100%;
+    height: 60%;
+}
+
+.cusines{
+    width: fit-content;
+    height: 5%;
+}
+.extaInfo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: auto;
+}
+.restro-title{
+    font-size: medium;
+    height: 5%;
+    align-items: center;
+}
+.search{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    padding: 10px;
+    
+}
+.filter-btn{
+    
+    background-color:coral;
+    border-radius: 5%;
+    border: none;
+    height: 30px;
+    align-items: center;
+    font-size: large;
+    padding : 5px;
+    margin: 5px;
+}
+.search-btn{
+    
+    background-color:coral;
+    border-radius: 5%;
+    border: none;
+    height: 30px;
+    align-items: center;
+    font-size: large;
+    padding : 5px;
+    margin: 5px;
+}
+.search-text{
+    border-radius: 5%;
+    border: 3px solid coral;
+    padding : 5px;
+    margin: 5px;
+    font-size: medium;
+}
+.filter-btn:hover{
+    cursor: pointer;
+    border: 5px solid turquoise;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+    background-repeat: repeat-x;
+    animation: shimmer 2.0s infinite;
+}
+.login-btn{
+    height: 20px;
+    width: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.shimmer-card{
+    width: 15%;
+    padding: 5px;
+    margin: 5px;
+    background-color: lightgrey;
+    height: 350px;
+
+  
+}
+
+@keyframes shimmer {
+    100% {-webkit-mask-position:left}
+  }
