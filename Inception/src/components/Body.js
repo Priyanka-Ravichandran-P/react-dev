@@ -15,7 +15,7 @@ const Body = () => {
     let data = await fetch(API_ENDPOINT);
     let allRestaurants = await data.json();
     // Optional Chaining
-    allRestaurants = allRestaurants?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    allRestaurants = allRestaurants?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setRestaurantCards(allRestaurants);
     setFilteredRestaurantCards(allRestaurants);
   }
