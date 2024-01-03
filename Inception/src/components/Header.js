@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LOGO_URL, CART_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 const Header = () => {
-  const [buttonName, setBtnName] = useState("Login");
+  
   return (
     <div className="header">
       <div className="logo">
@@ -21,16 +21,7 @@ const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
           <li>
-            <button
-              className="login-btn"
-              onClick={() => {
-                buttonName == "Login"
-                  ? setBtnName("Logout")
-                  : setBtnName("Login");
-              }}
-            >
-              {buttonName}
-            </button>
+            <Link to="/profile"> Profile</Link>
           </li>
           <li>
             <img className="cart" alt="Food cart" src={CART_URL} />

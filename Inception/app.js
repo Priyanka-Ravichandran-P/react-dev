@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM  from 'react-dom/client';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Header from './src/components/Header';
 import Body from './src/components/Body';
 import About from './src/components/About';
 import ContactUS from './src/components/ContactUS.js';
 import Error from './src/components/Error.js';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import RestaurantMenu from './src/components/RestaurantMenu.js';
+import UserClass from './src/components/UserClass.js';
+
+
 
 const AppLayout = () => (
 <div className = "app-component">
@@ -18,7 +22,8 @@ const routerConfig = createBrowserRouter([
     {
         path:"/",
         element: <AppLayout/>,
-        children:[{
+        children:[
+        {
             path:'/',
             element:<Body/>
         },
@@ -29,7 +34,16 @@ const routerConfig = createBrowserRouter([
         {
             path:'/contact',
             element:<ContactUS/>
-        }],
+        },
+        {
+            path:'/profile',
+            element:<UserClass/>
+        },
+        {
+            path: '/restaurant-menu/:id',
+            element: <RestaurantMenu/>
+        }
+    ],
         errorElement:<Error/>
     }
 ])
