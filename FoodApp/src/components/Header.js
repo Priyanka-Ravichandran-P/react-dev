@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { LOGO_URL, CART_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
+import { useOnlineStatus } from "../hooks/OnlineStatusHook";
+
 const Header = () => {
-  
+  const [isOnline] = useOnlineStatus();
   return (
     <div className="header">
       <div className="logo">
@@ -11,7 +12,13 @@ const Header = () => {
       <div className="nav-bar">
         <ul className="nav-list">
           <li>
-            {" "}
+            {isOnline ? (
+              <span className="dot-active"></span>
+            ) : (
+              <span className="dot-inactive"></span>
+            )}
+          </li>
+          <li>
             <Link to="/">Home</Link>
           </li>
           <li>
