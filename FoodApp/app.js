@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM  from 'react-dom/client';
+import { lazy } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Header from './src/components/Header';
 import Body from './src/components/Body';
-import About from './src/components/About';
-import ContactUS from './src/components/ContactUS.js';
 import Error from './src/components/Error.js';
 import RestaurantMenu from './src/components/RestaurantMenu.js';
 import UserClass from './src/components/UserClass.js';
+import Shimmer from './src/components/Shimmer.js';
 
-
+// Lazy Loading (Defer)
+const ContactUS = lazy(()=> import('./src/components/ContactUS.js'));
+const About = lazy(()=> import('./src/components/About'));
 
 const AppLayout = () => (
 <div className = "app-component">
@@ -29,11 +31,12 @@ const routerConfig = createBrowserRouter([
         },
         {
             path:'/about',
-            element:<About/>
+            element: <Suspense fallback = {<Shimmer/>}> <About/> </Suspense>
+            
         },
         {
             path:'/contact',
-            element:<ContactUS/>
+            element:<Suspense fallback = {<Shimmer/>}> <ContactUS/> </Suspense>
         },
         {
             path:'/profile',
