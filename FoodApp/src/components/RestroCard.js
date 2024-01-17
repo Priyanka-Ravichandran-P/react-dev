@@ -19,4 +19,20 @@ const RestroCard = (props) => {
     )
 }
 
+/**
+ * Higher Order Components takes a component and returns another component.
+ * It does not change original component, instead returns new one by adding some toppings.
+ * HOC are Pure Functions (means does not modify existing Components)
+ */
+export const isRestroOpen= (RestroCard) => {
+  return (props) => {
+    return (
+    <div>
+      <label className="servicable-card">Serviceable </label>
+      <RestroCard {...props} />
+    </div>);
+  };
+};
+
+
 export default RestroCard;

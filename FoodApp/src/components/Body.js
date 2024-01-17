@@ -1,4 +1,4 @@
-import RestroCard from "./RestroCard";
+import RestroCard, {isRestroOpen} from "./RestroCard";
 import FilterBtn from "./FilterBtn";
 import SearchComponent from "./SearchComponent";
 import Shimmer from "./Shimmer";
@@ -7,8 +7,8 @@ import { useAllRestaurants } from "../hooks/RestroCardHook";
 
 const Body = () => {
   const [restaurantCards, filteredRestaurantCards, setFilteredRestaurantCards] =
-    useAllRestaurants();
-
+  useAllRestaurants();
+  const OpenLabelRestroCards = isRestroOpen(RestroCard);
   if (filteredRestaurantCards?.length == 0) return <Shimmer />;
   // Rendering on the basis of condition is called conditional rendering
 
@@ -33,7 +33,8 @@ const Body = () => {
               to={`/restaurant-menu/${card.info.id}`}
               className="restro-card-link"
             >
-              <RestroCard data={card.info} />
+              {card?.info?.isOpen ? <OpenLabelRestroCards data={card.info}/> : <RestroCard data={card.info} />}
+              
             </Link>
           </div>
         ))}

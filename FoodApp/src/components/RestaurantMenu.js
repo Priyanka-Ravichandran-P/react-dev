@@ -9,16 +9,17 @@ const RestaurantMenu = () => {
   return restaurantsMenu.length == 0 ? (
     <Shimmer />
   ) : (
-    <div>
+    <div className="restaurant-menu-parent">
       <div className="restaurant-info-card">
         <h2>{restaurantInfo.name}</h2>
       </div>
-      <div className="restaurant-menu-card">
+      <div className = "restaurant-menu-categories">
+      <div className="restaurant-menu-cards">
         {restaurantsMenu?.map((menu) => {
           return (
             <div className="restaurant-menu-info" key={menu.id}>
               <div className="restaurant-menu-left-info">
-                <h3 className="restaurant-menu-name">{menu.name}</h3>
+          <h3 className="restaurant-menu-name">{menu.name}</h3>
                 <h4 className="restaurant-menu-price">{`₹ ${
                   menu.price / 100 || menu.defaultPrice / 100
                 }`}</h4>
@@ -55,6 +56,7 @@ const RestaurantMenu = () => {
             </div>
           );
         })}
+      </div>
       </div>
     </div>
   );

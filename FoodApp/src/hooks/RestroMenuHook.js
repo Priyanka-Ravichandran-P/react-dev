@@ -12,11 +12,13 @@ export const useRestaurantsMenu = (value) => {
     );
     data = await data.json();
 
-    let categories = data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+    let menuData = data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
     // let menuInfo = categories?.map((category) =>
     //   category.itemCards.map((item) => item.card.info)
     // );
-    let menuInfo = categories.itemCards.map((item) => item.card.info)
+
+    let categories = menuData?.categories?.length > 0 ? menuData.categories[0] : menuData;
+    let menuInfo = categories?.itemCards.map((item) => item.card.info)
     let restroInfo = data.data.cards[0].card.card.info;
     setRestaurantsMenu(menuInfo);
     setRestaurantInfo(restroInfo);
