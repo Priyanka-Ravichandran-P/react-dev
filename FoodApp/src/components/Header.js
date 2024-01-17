@@ -5,33 +5,33 @@ import { useOnlineStatus } from "../hooks/OnlineStatusHook";
 const Header = () => {
   const [isOnline] = useOnlineStatus();
   return (
-    <div className="header">
-      <div className="logo">
+    <div className="flex justify-between border border-black bg-yellow-300">
+      <div className="w-28">
         <img id="food-app-logo" alt="Logo" src={LOGO_URL} />
       </div>
-      <div className="nav-bar">
-        <ul className="nav-list">
-          <li>
+      <div className="">
+        <ul className="flex text-xl font-serif flex-row justify-center">
+          <li className="p-2">
             {isOnline ? (
-              <span className="dot-active"></span>
+              <div className="h-4 w-4 bg-green-700 rounded-full"></div>
             ) : (
-              <span className="dot-inactive"></span>
+              <div className="h-4 w-4 bg-red-700 rounded-full"></div>
             )}
           </li>
-          <li>
+          <li className="p-2">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="p-2">
             <Link to="/about">About Us</Link>
           </li>
-          <li>
+          <li className="p-2">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>
+          <li className="p-2">
             <Link to="/profile"> Profile</Link>
           </li>
-          <li>
-            <img className="cart" alt="Food cart" src={CART_URL} />
+          <li className="p-2">
+            <img className="w-12" alt="Food cart" src={CART_URL} />
           </li>
         </ul>
       </div>
