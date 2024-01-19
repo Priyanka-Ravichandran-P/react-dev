@@ -11,14 +11,17 @@ export const useRestaurantsMenu = (value) => {
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.933603494798213&lng=77.62448069999998&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
     data = await data.json();
-
-    let menuData = data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+     
+    let menuData = data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards;
+    console.log("   dataaa    recc: ", data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR);
     // let menuInfo = categories?.map((category) =>
     //   category.itemCards.map((item) => item.card.info)
     // );
 
-    let categories = menuData?.categories?.length > 0 ? menuData.categories[0] : menuData;
-    let menuInfo = categories?.itemCards.map((item) => item.card.info)
+    // let categories = menuData?.categories?.length > 0 ? menuData.categories[0] : menuData;
+    // let menuInfo = categories;
+    // let menuInfo = categories?.itemCards.map((item) => item.card.info)
+    let menuInfo = menuData.filter((obj)=> obj?.card?.card?.title !== undefined)
     let restroInfo = data.data.cards[0].card.card.info;
     setRestaurantsMenu(menuInfo);
     setRestaurantInfo(restroInfo);

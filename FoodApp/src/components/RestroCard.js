@@ -1,14 +1,18 @@
 import { CDN_URL } from "../utils/constant";
 const RestroCard = (props) => {
     
-    const {cloudinaryImageId, name, cuisines, sla, avgRating, costForTwo} = props?.data;
+    const {cloudinaryImageId, cuisines, sla, avgRating, costForTwo} = props?.data;
     const deliveryTime = sla.deliveryTime;
+    let name = props?.data?.name;
+    if(name.length > 20){
+      name = name.substring(0,20).concat("...");
+    }
     return (
-        <div className='restro-card'>
-            <img className="restro-logo" alt='Food' src={CDN_URL+cloudinaryImageId}/>
-            <h4 className ="restro-title">{name}</h4>
-            <h5 className = 'cusines'>{cuisines.join(', ').substring(0,100)}</h5>
-            <div className="extaInfo">
+        <div className='w-full'>
+            <img className="w-full h-60 rounded-md" alt='Food' src={CDN_URL+cloudinaryImageId}/>
+            <h4 className ="m-1 text-lg font-bold py-2 h-10 ">{name}</h4>
+            <h5 className = 'w-fit text-md m-1 h-24'>{cuisines.join(', ').substring(0,100)}</h5>
+            <div className="m-1 flex flex-wrap justify-between align-baseline h-6 font-semibold">
                 <h5>{avgRating}</h5>
                 <h5>{deliveryTime + ` MINS`}</h5>
                 <h5>{costForTwo}</h5>
@@ -27,8 +31,10 @@ const RestroCard = (props) => {
 export const isRestroOpen= (RestroCard) => {
   return (props) => {
     return (
-    <div>
-      <label className="servicable-card">Serviceable </label>
+    <div className="inline-flex">
+     <span className="left-0 h-4 w-5 mr-2 absolute my-2 bg-orange-800 rounded-sm"> </span>
+     <label className="h-6 absolute my-1 ml-1 bg-black text-white p-1 rounded-sm rounded-l-xl italic text-lg leading-none ">Serviceable </label>
+     
       <RestroCard {...props} />
     </div>);
   };

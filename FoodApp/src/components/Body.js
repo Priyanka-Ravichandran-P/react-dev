@@ -13,8 +13,8 @@ const Body = () => {
   // Rendering on the basis of condition is called conditional rendering
 
   return (
-    <div className="body">
-      <div className="search">
+    <div className=" bg-yellow-200">
+      <div className="flex justify-end items-end p-2">
         <FilterBtn
           onClick={() => {
             setFilteredRestaurantCards(
@@ -26,9 +26,9 @@ const Body = () => {
           data={{ restaurantCards, setFilteredRestaurantCards }}
         />
       </div>
-      <div className="restaurant-card-container">
+      <div className="flex flex-wrap w-full m-4">
         {filteredRestaurantCards?.map((card) => (
-          <div className="restro-cards" key={card.info.id}>
+          <div className="w-[18%] bg-orange-400 m-3 border-8  rounded-sm p-1 hover:border-teal-500 transition-transform duration-300 ease-in-out transform hover:scale-105" key={card.info.id}>
             <Link
               to={`/restaurant-menu/${card.info.id}`}
               className="restro-card-link"

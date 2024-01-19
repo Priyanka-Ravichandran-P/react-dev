@@ -14,7 +14,7 @@ const ContactUS = lazy(()=> import('./src/components/ContactUS.js'));
 const About = lazy(()=> import('./src/components/About'));
 
 const AppLayout = () => (
-<div className = "app-component">
+<div className = "justify-between">
     <Header/>
     <Outlet/>
 </div>
