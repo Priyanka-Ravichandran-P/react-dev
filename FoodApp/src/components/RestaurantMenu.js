@@ -1,73 +1,35 @@
-import { STAR_IMG_SRC } from "../utils/constant";
 import Shimmer from "./Shimmer";
-import { CDN_URL } from "../utils/constant";
 import { useRestaurantsMenu } from "../hooks/RestroMenuHook";
+import { useState } from "react";
+import Menu from "./Menu";
 
 const RestaurantMenu = () => {
   const [restaurantsMenu, restaurantInfo] = useRestaurantsMenu([]);
-
+  const [showIndex, setShowIndex] = useState();
   return restaurantsMenu.length == 0 ? (
     <Shimmer />
   ) : (
-
-    <div className="p-6 flex flex-col  w-1/2 ml-auto mr-auto align-middle bg-yellow-200">
-      <div className="font-bold text-xl">
-        <h2 className="flex flex-wrap justify-center">{restaurantInfo.name}</h2>
+    <div className=" bg-yellow-200">
+      <div className="p-6 flex flex-col  w-1/2 ml-auto mr-auto align-middle">
+        <div className="font-bold text-xl">
+          <h2 className="flex flex-wrap justify-center">
+            {restaurantInfo.name}
+          </h2>
+        </div>
+        <div className="flex flex-col my-8">
+          {restaurantsMenu?.map((menuCard, index) => {
+            return (
+              <Menu
+                data={menuCard}
+                key={menuCard?.card?.card?.title}
+                isCategoryShow={index == showIndex ? true : false}
+                setShowIndex={() => {return (index != showIndex) ? setShowIndex(index) : setShowIndex(-1)}}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div className = "flex flex-col my-8">
-        {console.log(" menu", restaurantsMenu[0].card?.card?.title)}
-      {restaurantsMenu?.map((menuCard) => {
-        return(
-          <div>
-        <button key={ menuCard?.card?.card?.title} onClick={()=>{}}
-        className=" inline-flex justify-between w-full bg-orange-400 p-4 border-2 text-lg transition-shadow font-bold">
-         {menuCard?.card?.card?.title}
-        <span>🔻</span>
-        </button>
-         {/* <div className="restaurant-menu-info" key={menu.id}>
-         <div className="restaurant-menu-left-info">
-     <h3 className="restaurant-menu-name">{menu.name}</h3>
-           <h4 className="restaurant-menu-price">{`₹ ${
-             menu.price / 100 || menu.defaultPrice / 100
-           }`}</h4>
-           <h5 className="restaurant-menu-desc">{menu.description}</h5>
-         </div>
-         <div className="restaurant-menu-right-info">
-           <div>
-             {menu?.imageId ? (
-               <img
-                 className="restaurant-menu-image"
-                 alt="Food"
-                 src={CDN_URL + menu?.imageId}
-               />
-             ) : (
-               <div></div>
-             )}
-           </div>
-
-           {menu?.ratings?.aggregatedRating?.rating ? (
-             <div className="restaurant-menu-rating">
-               <span>
-                 <img
-                   className="restaurant-menu-rating-image"
-                   alt="Food"
-                   src={STAR_IMG_SRC}
-                 />
-               </span>
-               <span>{menu.ratings.aggregatedRating.rating}</span>
-             </div>
-           ) : (
-             <h4></h4>
-           )}
-         </div>
-       </div> */}
-</div>
-        )
-      })}
-      </div>
-    
-   
-    </div> 
+    </div>
   );
 };
 
