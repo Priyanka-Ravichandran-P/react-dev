@@ -31,7 +31,7 @@ const Body = () => {
           <div className="w-[18%] bg-orange-400 m-3 border-8  rounded-sm p-1 hover:border-teal-500 transition-transform duration-300 ease-in-out transform hover:scale-105" key={card.info.id}>
             <Link
               to={`/restaurant-menu/${card.info.id}`}
-              className="restro-card-link"
+              className="w-full"
             >
               {card?.info?.isOpen ? <OpenLabelRestroCards data={card.info}/> : <RestroCard data={card.info} />}
               

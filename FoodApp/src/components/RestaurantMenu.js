@@ -5,7 +5,7 @@ import Menu from "./Menu";
 
 const RestaurantMenu = () => {
   const [restaurantsMenu, restaurantInfo] = useRestaurantsMenu([]);
-  const [showIndex, setShowIndex] = useState();
+  const [showIndex, setShowIndex] = useState(0);
   return restaurantsMenu.length == 0 ? (
     <Shimmer />
   ) : (

@@ -22,8 +22,8 @@ class UserClass extends React.Component {
     const {avatar_url, name, location, html_url} = this.state.user
     return this.state.user === null ? <Shimmer/> :
      (
-      <div className="user-info">
-        <img className = "avatar" src={avatar_url}/>
+      <div className="text-red-600 font-semibold p-4">
+        <img src={avatar_url}/>
         <h1>User Name: {name}</h1>
         <h2>Git Hub URL: {html_url}</h2>
         <h2>Location: {location}</h2>
