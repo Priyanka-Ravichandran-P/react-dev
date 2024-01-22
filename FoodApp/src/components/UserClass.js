@@ -1,6 +1,7 @@
 import React from "react";
 import {USER_PROFILE_URL} from '../utils/constant';
 import Shimmer from "./Shimmer";
+import UserContext from "../utils/UserContext";
 class UserClass extends React.Component {
   constructor() {
     super();
@@ -27,6 +28,10 @@ class UserClass extends React.Component {
         <h1>User Name: {name}</h1>
         <h2>Git Hub URL: {html_url}</h2>
         <h2>Location: {location}</h2>
+        {/* Extracting Value from Global Context in class based components */}
+        <UserContext.Consumer>
+          {(data)=><p>LoggedInUser : {data.loggedInUser}</p>} 
+        </UserContext.Consumer>
         <button
           className="login-btn"
           onClick={() => {

@@ -1,8 +1,14 @@
 import { GIF_URL } from "../utils/constant";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const About = () => {
+  const {loggedInUser} = useContext(UserContext);
   return (
     <div  className="contents">
+      <div className="text-orange-700 m-auto p-4 text-end justify-end text-lg font-semibold">
+        <p> LoggedIn User: {loggedInUser} 👋</p>
+      </div>
       <div >
         <h1 className="text-orange-700 m-auto p-4 text-center text-2xl font-bold" >
           🍨🍩🎂 Welcome to Priyanka Catering - Where Flavor And Health Meets

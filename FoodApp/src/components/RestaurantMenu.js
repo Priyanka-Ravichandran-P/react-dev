@@ -23,7 +23,11 @@ const RestaurantMenu = () => {
                 data={menuCard}
                 key={menuCard?.card?.card?.title}
                 isCategoryShow={index == showIndex ? true : false}
-                setShowIndex={() => {return (index != showIndex) ? setShowIndex(index) : setShowIndex(-1)}}
+                setShowIndex={() => {
+                  return index != showIndex
+                    ? setShowIndex(index)
+                    : setShowIndex(-1);
+                }}
               />
             );
           })}

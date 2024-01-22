@@ -1,4 +1,4 @@
-import RestroCard, {isRestroOpen} from "./RestroCard";
+import RestroCard, { isRestroOpen } from "./RestroCard";
 import FilterBtn from "./FilterBtn";
 import SearchComponent from "./SearchComponent";
 import Shimmer from "./Shimmer";
@@ -7,9 +7,12 @@ import { useAllRestaurants } from "../hooks/RestroCardHook";
 
 const Body = () => {
   const [restaurantCards, filteredRestaurantCards, setFilteredRestaurantCards] =
-  useAllRestaurants();
-  const OpenLabelRestroCards = isRestroOpen(RestroCard);
+    useAllRestaurants([]);
+
   if (filteredRestaurantCards?.length == 0) return <Shimmer />;
+  
+  const OpenLabelRestroCards = isRestroOpen(RestroCard);
+
   // Rendering on the basis of condition is called conditional rendering
 
   return (
@@ -28,13 +31,16 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap w-full m-4">
         {filteredRestaurantCards?.map((card) => (
-          <div className="w-[18%] bg-orange-400 m-3 border-8  rounded-sm p-1 hover:border-teal-500 transition-transform duration-300 ease-in-out transform hover:scale-105" key={card.info.id}>
-            <Link
-              to={`/restaurant-menu/${card.info.id}`}
-              className="w-full"
-            >
-              {card?.info?.isOpen ? <OpenLabelRestroCards data={card.info}/> : <RestroCard data={card.info} />}
-              
+          <div
+            className="w-[18%] bg-orange-400 m-3 border-8  rounded-sm p-1 hover:border-teal-500 transition-transform duration-300 ease-in-out transform hover:scale-105"
+            key={card.info.id}
+          >
+            <Link to={`/restaurant-menu/${card.info.id}`} className="w-full">
+              {card?.info?.isOpen ? (
+                <OpenLabelRestroCards data={card.info} />
+              ) : (
+                <RestroCard data={card.info} />
+              )}
             </Link>
           </div>
         ))}
