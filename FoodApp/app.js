@@ -10,6 +10,10 @@ import UserClass from "./src/components/UserClass.js";
 import Shimmer from "./src/components/Shimmer.js";
 import UserContext from "./src/utils/UserContext.js";
 import { useContext } from "react";
+import { Provider } from "react-redux";
+import globalAppStore from "./src/redux-store/storeConfiguration.js";
+import Cart from "./src/components/Cart.js";
+
 // Lazy Loading (Defer)
 const ContactUS = lazy(() => import("./src/components/ContactUS.js"));
 const About = lazy(() => import("./src/components/About"));
@@ -24,13 +28,15 @@ const AppLayout = () => {
    */
   return (
     <div className="justify-between">
-      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-        <Header />
-        <Outlet />
-      </UserContext.Provider>
+      <Provider store={globalAppStore}>
+        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+          <Header />
+          <Outlet />
+        </UserContext.Provider>
+      </Provider>
     </div>
   );
-};
+}; 
 
 const routerConfig = createBrowserRouter([
   {
@@ -67,6 +73,10 @@ const routerConfig = createBrowserRouter([
         path: "/restaurant-menu/:id",
         element: <RestaurantMenu />,
       },
+      {
+        path:'/cart',
+        element: <Cart/>
+      }
     ],
     errorElement: <Error />,
   },

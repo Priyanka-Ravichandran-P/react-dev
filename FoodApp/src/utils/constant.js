@@ -5,6 +5,7 @@ import gif_url from '../../resources/images/logo_gif.gif';
 import error_page from '../../resources/images/errorPage.jpg';
 import star_img from '../../resources/images/star_rating.png';
 import imageNotFound from '../../resources/images/imageNotFound.jpg';
+import emptyCart from '../../resources/images/emptyCart.jpg';
 
 export const CDN_URL = 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/';
 export const LOGO_URL = logo;
@@ -16,3 +17,4 @@ export const RESTAURANT_MENU_URL = "https://www.swiggy.com/dapi/menu/pl?page-typ
 export const STAR_IMG_SRC = star_img;
 export const USER_PROFILE_URL = 'https://api.github.com/users/Priyanka-Ravichandran-P';
 export const IMAGE_NOT_FOUND = imageNotFound;
+export const EMPTY_CART = emptyCart;
