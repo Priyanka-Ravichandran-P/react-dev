@@ -14,7 +14,6 @@ export const useRestaurantsMenu = (value) => {
     data = await data.json();
      
     let menuData = data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards;
-    console.log("   dataaa    recc: ", data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR);
     // let menuInfo = categories?.map((category) =>
     //   category.itemCards.map((item) => item.card.info)
     // );

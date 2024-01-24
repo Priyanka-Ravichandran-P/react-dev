@@ -2,10 +2,25 @@ import Shimmer from "./Shimmer";
 import { useRestaurantsMenu } from "../hooks/RestroMenuHook";
 import { useState } from "react";
 import Menu from "./Menu";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addRestaurantInfo,
+  removeRestaurantInfo,
+} from "../redux-store/slice/cartSlice";
 
 const RestaurantMenu = () => {
+  const dispatch = useDispatch();
   const [restaurantsMenu, restaurantInfo] = useRestaurantsMenu([]);
   const [showIndex, setShowIndex] = useState(0);
+
+  dispatch(
+    addRestaurantInfo({
+      name: restaurantInfo.name,
+      logo: restaurantInfo.cloudinaryImageId,
+      address: restaurantInfo.city,
+    })
+  );
+
   return restaurantsMenu.length == 0 ? (
     <Shimmer />
   ) : (

@@ -4,10 +4,10 @@ const RestaurantSlice = createSlice({
   name: "restaurantInfo",
   initialState: {
     restaurantInfo: {
-      name: "",
-      logo: "",
-      address: "",
-    },
+        name: "",
+        logo: "",
+        address: "",
+      }, 
   },
 
   reducers: {

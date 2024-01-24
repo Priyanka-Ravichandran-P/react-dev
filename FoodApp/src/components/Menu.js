@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MenuItem from "./MenuItem";
 import MenuCategories from "./MenuCategories";
+import { useSelector } from "react-redux";
 
 const Menu = ({ data, isCategoryShow, setShowIndex }) => {
   const [showItemIndex, setShowItemIndex] = useState(0);
@@ -8,6 +9,13 @@ const Menu = ({ data, isCategoryShow, setShowIndex }) => {
   const handleClick = () => {
     setShowIndex();
   };
+  let menuItems = [];
+  menuItems = useSelector((store) => store.cart.items);
+  const fetchItems = () => {
+    menuItems.map((obj) => obj.id);
+  };
+  fetchItems();
+
   return (
     <div>
       <button
@@ -37,7 +45,15 @@ const Menu = ({ data, isCategoryShow, setShowIndex }) => {
 
       {isCategoryShow &&
         menuCard?.card?.card?.itemCards?.map((item) => (
-          <MenuItem key={item.card.info.id} data={item} />
+          <MenuItem
+            key={item.card.info.id}
+            data={item}
+            isAddShow={
+              menuItems.filter((obj) => obj.id === item.card.info.id).length > 0
+                ? false
+                : true
+            }
+          />
         ))}
     </div>
   );

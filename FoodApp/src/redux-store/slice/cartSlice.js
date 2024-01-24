@@ -1,24 +1,69 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current, original } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
-    name : 'cart',
-    initialState:{
-        items:["pizza"]
+  name: "cart",
+  initialState: {
+    items: [],
+    totalCartItems: 0,
+    restaurantInfo: {
+      name: "",
+      logo: "",
+      address: "",
     },
-    reducers:{
-        addItem : (state, action)=>{
-            // Mutating the state
-            state.items.push(action.payload);
-        },
-        removeItem : (state, action)=>{
-            state.items.pop();
-        },
-        clearCart : (state)=>{
-            state.items.length = 0;
+  },
+  reducers: {
+    addRestaurantInfo: (state, action) => {
+      return {
+        ...state,
+        restaurantInfo: action.payload,
+      };
+    },
+    addItem: (state, action) => {
+      state.items.push(action.payload);
+      state.totalCartItems = state.totalCartItems + 1;
+    },
+
+    removeItem: (state, action) => {},
+
+    decreaseQuantity: (state, action) => {
+      const id = action.payload;
+
+      let itemId = -1;
+      let quantity = -1;
+      state.items.map((item) => {
+        if (item.id === id) {
+          item.quantity--;
+          quantity = item.quantity;
+          itemId = item.id;
         }
-    }
+        return item;
+      });
+      if (quantity <= 0) {
+        state.items = state.items.filter((item) => item.id !== itemId);
+      }
+      state.totalCartItems = state.totalCartItems - 1;
+    },
+    increaseQuantity: (state, action) => {
+      const id = action.payload;
+      const index = state.items.findIndex((item) => item.id === id); //finding index of the item                                                                   action.payload); //finding index of the item
+      const newArray = [...state.items];
+      newArray[index].quantity++;
+      state.totalCartItems = state.totalCartItems + 1;
+    },
+    clearCart: (state) => {
+      state.items.length = 0;
+      state.totalCartItems = 0;
+    },
+  },
 });
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  clearCart,
+  increaseQuantity,
+  decreaseQuantity,
+  addRestaurantInfo,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
