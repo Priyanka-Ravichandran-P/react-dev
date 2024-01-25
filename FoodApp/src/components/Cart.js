@@ -4,6 +4,7 @@ import { CDN_URL } from "../utils/constant";
 import {
   increaseQuantity,
   decreaseQuantity,
+  clearCart,
 } from "../redux-store/slice/cartSlice";
 
 const Cart = () => {
@@ -12,6 +13,7 @@ const Cart = () => {
   const totalCartAmount = cartItems.totalCartAmount;
   const items = useSelector((store) => store.cart.items);
   const restaurant = useSelector((store) => store.cart.restaurantInfo);
+
   const dispatch = useDispatch();
 
   const decreaseItemQuantity = (info) => {
@@ -22,6 +24,7 @@ const Cart = () => {
     const id = info?.id;
     dispatch(increaseQuantity(id));
   };
+
   return totalCartItems === 0 ? (
     <EmptyCart />
   ) : (
@@ -37,6 +40,7 @@ const Cart = () => {
           <h5>{restaurant.address}</h5>
         </div>
       </div>
+
       {items.map((item) => {
         return (
           <div
@@ -69,9 +73,7 @@ const Cart = () => {
               </button>
             </div>
 
-            <div className="font-semibold">
-              {(item.price) * item.quantity}
-            </div>
+            <div className="font-semibold">{item.price * item.quantity}</div>
           </div>
         );
       })}
@@ -79,6 +81,17 @@ const Cart = () => {
       <div className="flex flex-row justify-between font-bold">
         <h2 className="p-1 m-1">Total Amount: </h2>
         <h2 className="p-1 m-1">{totalCartAmount}</h2>
+      </div>
+      <div className="flex mt-8 justify-end">
+        <button
+          className=" hover:border-2 bg-yellow-600 font-bold rounded-md w-24 "
+          onClick={() => {
+            dispatch(clearCart());
+          }}
+        >
+          {" "}
+          Clear Cart
+        </button>
       </div>
     </div>
   );
