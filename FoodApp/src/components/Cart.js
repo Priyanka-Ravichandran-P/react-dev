@@ -9,6 +9,7 @@ import {
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart);
   const totalCartItems = cartItems.totalCartItems;
+  const totalCartAmount = cartItems.totalCartAmount;
   const items = useSelector((store) => store.cart.items);
   const restaurant = useSelector((store) => store.cart.restaurantInfo);
   const dispatch = useDispatch();
@@ -44,10 +45,7 @@ const Cart = () => {
           >
             <h5 className="w-1/2">{item.name}</h5>
 
-            <div
-              className=" w-30 flex flex-row
-                                  rounded-lg font-bold bg-gray-600  text-white"
-            >
+            <div className=" w-30 h-7 flex flex-row rounded-lg font-bold bg-gray-600  text-white">
               <button
                 className=" w-6  hover:text-red-600"
                 onClick={() => {
@@ -57,7 +55,7 @@ const Cart = () => {
                 {" "}
                 -
               </button>
-              <div className=" w-12 text-center hover:text-green-600">
+              <div className=" w-16 text-center hover:text-green-600">
                 {item.quantity}
               </div>
               <button
@@ -72,11 +70,16 @@ const Cart = () => {
             </div>
 
             <div className="font-semibold">
-              {(item.price / 100) * item.quantity}
+              {(item.price) * item.quantity}
             </div>
           </div>
         );
       })}
+
+      <div className="flex flex-row justify-between font-bold">
+        <h2 className="p-1 m-1">Total Amount: </h2>
+        <h2 className="p-1 m-1">{totalCartAmount}</h2>
+      </div>
     </div>
   );
 };

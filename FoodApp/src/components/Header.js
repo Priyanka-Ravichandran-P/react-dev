@@ -1,4 +1,4 @@
-import { LOGO_URL, CART_URL } from "../utils/constant";
+import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../hooks/OnlineStatusHook";
 import { useState } from "react";
@@ -17,26 +17,35 @@ const Header = () => {
           {isOnline ? (
             <div className="flex flex-row">
               <div className="h-4 w-4 bg-green-700 rounded-full"></div>
-              <p className="ml-1">Online</p>
+              <p className="ml-1 text-md">You're Connected</p>
             </div>
           ) : (
             <div className="flex flex-row">
               <div className="h-4 w-4 bg-red-700 rounded-full"></div>
-              <p className="ml-1">Offline</p>
+              <p className="ml-1 text-md">You're not Connected</p>
             </div>
           )}
         </li>
         <li className="p-2">
-          <Link to="/">Home</Link>
+          <Link className="hover:bg-orange-400 rounded-lg p-2" to="/">
+            Home
+          </Link>
         </li>
         <li className="p-2">
-          <Link to="/about">About Us</Link>
+          <Link className="hover:bg-orange-400 rounded-lg p-2" to="/about">
+            About Us
+          </Link>
         </li>
         <li className="p-2">
-          <Link to="/contact">Contact Us</Link>
+          <Link className="hover:bg-orange-400 rounded-lg p-2" to="/contact">
+            Contact Us
+          </Link>
         </li>
         <li className="p-2">
-          <Link to="/profile"> Profile</Link>
+          <Link className="hover:bg-orange-400 rounded-lg p-2" to="/profile">
+            {" "}
+            Profile
+          </Link>
         </li>
         <li className="p-2">
           <Link to="/cart">

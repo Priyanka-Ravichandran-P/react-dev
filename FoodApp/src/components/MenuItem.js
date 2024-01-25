@@ -34,7 +34,7 @@ const MenuItem = ({ data, isAddShow }) => {
     const item = {
       id: info.id,
       name: info.name,
-      price: info.price || info.defaultPrice,
+      price: info.price / 100 || info.defaultPrice / 100,
       quantity: 1,
     };
     dispatch(addItem(item));
@@ -51,59 +51,60 @@ const MenuItem = ({ data, isAddShow }) => {
       </div>
       <div className="flex flex-col relative">
         <div className="rounded">
-          {info?.imageId ? (
-            <div className="relative">
+          <div className="relative">
+            {info?.imageId ? (
               <img
                 className="overflow-y-hidden size-36"
                 alt="Food"
                 src={CDN_URL + info?.imageId}
               />
-              {isAddBtnShow ? (
+            ) : (
+              <img
+                className="overflow-y-hidden size-36"
+                alt="Food_NOT_FOUND"
+                src={IMAGE_NOT_FOUND}
+              />
+            )}
+            {isAddBtnShow ? (
+              <button
+                className="absolute w-12 align-middle bottom-0 right-12  ml-auto mr-auto
+                              rounded-lg font-bold bg-black text-white"
+                onClick={() => {
+                  setAddBtnShow(false);
+                  addItemToCart(info);
+                }}
+              >
+                ADD
+              </button>
+            ) : (
+              <div
+                className="absolute w-30 bottom-0 right-7 ml-auto mr-auto flex flex-wrap 
+                              rounded-lg font-bold bg-gray-600  text-white"
+              >
                 <button
-                  className="absolute w-12 align-middle bottom-0 right-12  ml-auto mr-auto
-                                  rounded-lg font-bold bg-black text-white"
+                  className=" w-6 left-0  hover:text-red-600"
                   onClick={() => {
-                    setAddBtnShow(false);
-                    addItemToCart(info);
+                    decreaseItemQuantity(info);
                   }}
                 >
-                  ADD
+                  {" "}
+                  -
                 </button>
-              ) : (
-                <div
-                  className="absolute w-30 bottom-0 right-7 ml-auto mr-auto flex flex-wrap 
-                                  rounded-lg font-bold bg-gray-600  text-white"
-                >
-                  <button
-                    className=" w-6 left-0  hover:text-red-600"
-                    onClick={() => {
-                      decreaseItemQuantity(info);
-                    }}
-                  >
-                    {" "}
-                    -
-                  </button>
-                  <div className=" w-12 left-1/2 text-center hover:text-green-600">
-                    {
-                      menuItems?.filter((obj) => obj.id == info.id)?.[0]
-                        ?.quantity
-                    }
-                  </div>
-                  <button
-                    className=" w-6 right-0  hover:text-green-600"
-                    onClick={() => {
-                      increaseItemQuantity(info);
-                    }}
-                  >
-                    {" "}
-                    +
-                  </button>
+                <div className=" w-12 left-1/2 text-center hover:text-green-600">
+                  {menuItems?.filter((obj) => obj.id == info.id)?.[0]?.quantity}
                 </div>
-              )}
-            </div>
-          ) : (
-            <img className="size-36" alt="Food" src={IMAGE_NOT_FOUND} />
-          )}
+                <button
+                  className=" w-6 right-0  hover:text-green-600"
+                  onClick={() => {
+                    increaseItemQuantity(info);
+                  }}
+                >
+                  {" "}
+                  +
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         {info?.ratings?.aggregatedRating?.rating ? (

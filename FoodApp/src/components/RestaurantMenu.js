@@ -33,7 +33,7 @@ const RestaurantMenu = () => {
         </div>
         <div className="flex flex-col my-8">
           {restaurantsMenu?.map((menuCard, index) => {
-            return (
+            return menuCard?.card?.card?.carousel ? null : (
               <Menu
                 data={menuCard}
                 key={menuCard?.card?.card?.title}

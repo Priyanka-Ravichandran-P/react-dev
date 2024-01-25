@@ -4,9 +4,7 @@ const RestroCard = (props) => {
     props?.data;
   const deliveryTime = sla.deliveryTime;
   let name = props?.data?.name;
-  // if(name.length > 20){
-  //   name = name.substring(0,20).concat("...");
-  // }
+
   return (
     <div className="w-full">
       <img
