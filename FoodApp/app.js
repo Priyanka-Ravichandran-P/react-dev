@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { StrictMode, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { lazy } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
@@ -28,15 +28,17 @@ const AppLayout = () => {
    */
   return (
     <div className="justify-between">
-      <Provider store={globalAppStore}>
-        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-          <Header />
-          <Outlet />
-        </UserContext.Provider>
-      </Provider>
+      <StrictMode>
+        <Provider store={globalAppStore}>
+          <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+            <Header />
+            <Outlet />
+          </UserContext.Provider>
+        </Provider>
+      </StrictMode>
     </div>
   );
-}; 
+};
 
 const routerConfig = createBrowserRouter([
   {
@@ -74,9 +76,9 @@ const routerConfig = createBrowserRouter([
         element: <RestaurantMenu />,
       },
       {
-        path:'/cart',
-        element: <Cart/>
-      }
+        path: "/cart",
+        element: <Cart />,
+      },
     ],
     errorElement: <Error />,
   },

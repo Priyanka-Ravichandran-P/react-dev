@@ -40,7 +40,6 @@ const cartSlice = createSlice({
           quantity = item.quantity;
           itemId = item.id;
         }
-        console.log(state.totalCartAmount);
         return item;
       });
       if (quantity <= 0) {
@@ -55,7 +54,6 @@ const cartSlice = createSlice({
       newArray[index].quantity++;
       state.totalCartAmount += newArray[index].price;
       state.totalCartItems = state.totalCartItems + 1;
-      console.log(state.totalCartAmount);
     },
     clearCart: (state) => {
       state.items.length = 0;

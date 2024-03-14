@@ -10,7 +10,7 @@ import {
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart);
   const totalCartItems = cartItems.totalCartItems;
-  const totalCartAmount = cartItems.totalCartAmount;
+  const totalCartAmount = cartItems.totalCartAmount ? cartItems.totalCartAmount.toFixed(2) : 0;
   const items = useSelector((store) => store.cart.items);
   const restaurant = useSelector((store) => store.cart.restaurantInfo);
 
@@ -73,7 +73,7 @@ const Cart = () => {
               </button>
             </div>
 
-            <div className="font-semibold">{item.price * item.quantity}</div>
+            <div className="font-semibold">{(item.price * item.quantity).toFixed(2)}</div>
           </div>
         );
       })}

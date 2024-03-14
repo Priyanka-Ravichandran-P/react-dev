@@ -9,6 +9,7 @@ export const useRestaurantsMenu = (value) => {
 
   const fetchMenu = async () => {
     let data = await fetch(
+      "https://cors-anywhere.herokuapp.com/" +
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.933603494798213&lng=77.62448069999998&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
     data = await data.json();
